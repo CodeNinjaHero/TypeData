@@ -10,11 +10,16 @@ namespace begging
     {
         public HightOpe(int number) { }
         public int Sqr(int x) {
-            return x;
+            return (int)Math.Sqrt(x);
         }
         public int Factorial(int x)
         {
-            return x;
+            int result = 1;
+            for (int i = 1; i <= x; i++)
+            {
+                result *= i;
+            }
+            return result;
         }
 
     }
