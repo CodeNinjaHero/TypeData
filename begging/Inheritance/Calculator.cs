@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Begging.Interface;
 
-namespace begging
+namespace Begging.Inheritance
 {
     internal class Calculator : HightOpe, Operations
     {

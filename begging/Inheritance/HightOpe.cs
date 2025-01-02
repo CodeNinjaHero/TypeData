@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace begging
+namespace Begging.Inheritance
 {
     internal class HightOpe
     {
         public HightOpe(int number) { }
-        public int Sqr(int x) {
+        public int Sqr(int x)
+        {
             return (int)Math.Sqrt(x);
         }
         public int Factorial(int x)

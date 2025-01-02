@@ -1,20 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
-
-namespace begging
+using Begging.Dictionary;
+using Begging.Enums;
+using Begging.Inheritance;
+using Begging.Loops;
+using Begging.ObjectPersonalizated;
+using Begging.SwitchExample;
+using Begging.TryCatch;
+namespace Begging
 {
     public class Begging
     {
         public static void Main(string[] arr)
         {
-            // Llamamos a las funciones
             ShowBasicVariables();
             DemonstrateLoops();
             WorkWithListsAndObjects();
             UseCalculator();
-            BasicSwitchExample('a');
-            AdvancedSwitchExample(5);
+            UseDictionary();
+            UseTryCatch();
         }
 
         // Función para mostrar variables básicas
@@ -35,48 +41,11 @@ namespace begging
         // Función para demostrar bucles `for`, `foreach`, `while` y do-while
         public static void DemonstrateLoops()
         {
-            int[] arrayInt = { 1, 2, 3 };
-
-            // Bucle `for`
-            Console.WriteLine("Bucle for:");
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine(i);
-            }
-
-            // Bucle `foreach`
-            Console.WriteLine("Bucle foreach:");
-            foreach (var i in arrayInt)
-            {
-                Console.WriteLine(i);
-            }
-
-            // Bucle `while`
-            Console.WriteLine("Bucle while:");
-            bool flag = true;
-            var count = 0;
-            while (flag)
-            {
-                Console.WriteLine(count);
-                count++;
-                if (count > 5)
-                {
-                    flag = false;
-                }
-            }
-
-            // Bucle do- while
-            int count2 = 0;
-
-            Console.WriteLine("Bucle do-while:");
-            do
-            {
-                Console.WriteLine($"El valor de count es: {count2}");
-                count2++;
-            }
-            while (count2 < 5);
-
-            Console.WriteLine("El bucle do-while ha terminado.");
+            var loops = new LoopsExample();
+            loops.ExFor();
+            loops.ExForEach();
+            loops.ExWhile();
+            loops.ExDoWhile();
         }
 
 
@@ -90,9 +59,9 @@ namespace begging
             // Lista de cervezas
             var beers = new List<Beer>
             {
-                new Beer("Corona", "Desconocido"),
-                new Beer("La mal portada", "Desconocido"),
-                new Beer("Ron del caldas", "Desconocido")
+                new Beer("Corona", "Desconocido", BeerType.Ale),
+                new Beer("La mal portada", "Desconocido", BeerType.Ale),
+                new Beer("Ron del caldas", "Desconocido", BeerType.Lager)
             };
 
             Console.WriteLine("Lista de cervezas:");
@@ -110,47 +79,67 @@ namespace begging
             Console.WriteLine($"Factorial de 5: {calculator.Factorial(5)}");
             Console.WriteLine($"Raíz cuadrada de 25: {calculator.Sqr(25)}");
         }
-        public static void BasicSwitchExample(char input)
+       public static void UseSwitch()
         {
-            switch (input)
+            var witcher = new SwitchExample.Switch();
+            witcher.BasicSwitchExample('a');
+            witcher.AdvancedSwitchExample(12);
+        }
+        public static void UseDictionary()
+        {
+
+            DictionaryManager manager = new DictionaryManager();
+
+            // Agregar elementos
+            manager.Add("name", "John");
+            manager.Add("age", "30");
+            manager.Add("country", "USA");
+
+            // Imprimir todos los elementos
+            Console.WriteLine("Elementos del diccionario:");
+            manager.PrintAll();
+
+            // Verificar existencia de una clave
+            Console.WriteLine("\n¿Contiene la clave 'age'?: " + manager.ContainsKey("age"));
+
+            // Verificar existencia de un valor
+            Console.WriteLine("¿Contiene el valor 'USA'?: " + manager.ContainsValue("USA"));
+
+            // Obtener un valor de forma segura
+            if (manager.TryGetValue("name", out string nameValue))
             {
-                case 'a':
-                    Console.WriteLine("Seleccionaste la opción A.");
-                    break;
-                case 'b':
-                    Console.WriteLine("Seleccionaste la opción B.");
-                    break;
-                case 'c':
-                    Console.WriteLine("Seleccionaste la opción C.");
-                    break;
-                default:
-                    Console.WriteLine("Opción no válida.");
-                    break;
+                Console.WriteLine($"\nValor asociado a 'name': {nameValue}");
             }
+
+            // Contar elementos
+            Console.WriteLine("\nNúmero de elementos: " + manager.Count());
+
+            // Eliminar un elemento
+            manager.Remove("age");
+            Console.WriteLine("\nDespués de eliminar 'age':");
+            manager.PrintAll();
+
+            // Limpiar el diccionario
+            manager.Clear();
+            Console.WriteLine("\nDespués de limpiar el diccionario:");
+            manager.PrintAll();
         }
 
-
-        public static void AdvancedSwitchExample(int input)
+        public static void UseTryCatch()
         {
-            switch (input)
-            {
-                case int n when n < 0:
-                    Console.WriteLine("El número es negativo.");
-                    break;
-                case int n when n == 0:
-                    Console.WriteLine("El número es cero.");
-                    break;
-                case int n when n > 0 && n <= 10:
-                    Console.WriteLine("El número está entre 1 y 10.");
-                    break;
-                case int n when n > 10:
-                    Console.WriteLine("El número es mayor que 10.");
-                    break;
-                default:
-                    Console.WriteLine("Entrada no reconocida.");
-                    break;
-            }
+            BeerStore store = new BeerStore();
+
+            // Intentamos agregar cervezas con datos válidos y inválidos
+            store.AddBeer("Corona", "Cerveza ligera mexicana", BeerType.Lager);
+            store.AddBeer("Guinness", "Cerveza oscura irlandesa", BeerType.Stout);
+            store.AddBeer("", "Cerveza sin nombre", BeerType.Ale);  // Causa un error de validación
+            store.AddBeer("Pale Ale", "", BeerType.Ale);  // Causa un error de validación
+
+            // Intentamos mostrar las cervezas
+            store.ShowBeers();
+
         }
+
     }
 
 }

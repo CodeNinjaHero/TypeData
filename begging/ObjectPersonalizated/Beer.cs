@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Begging.Enums;
 
-namespace begging
+namespace Begging.ObjectPersonalizated
 {
     internal class Beer
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public BeerType Type { get; set; }  
 
-        public Beer(string name, string description) 
+        public Beer(string name, string description, BeerType type)
         {
             Name = name;
             Description = description;
+            Type = type;
         }
 
         public override string ToString()
         {
-            return $"{Name} - {Description}";
+            return $"{Name} - {Description} ({Type})";
         }
     }
 }

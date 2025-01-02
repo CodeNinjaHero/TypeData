@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "begging", "begging\begging.csproj", "{5B399A91-9F1C-4179-AA0B-CAE80268CAB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Begging", "begging\Begging.csproj", "{5B399A91-9F1C-4179-AA0B-CAE80268CAB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
